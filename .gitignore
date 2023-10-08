@@ -1,4 +1,5 @@
-# Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
+dev.db
+prisma/dev.db-journal
 
 # Logs
 
@@ -173,4 +174,3 @@ dist
 
 # Finder (MacOS) folder config
 .DS_Store
-
