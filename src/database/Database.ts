@@ -12,25 +12,37 @@ async function run(query) {
     }
 }
 
-function simpleInsert(table, data) {
+async function simpleInsert(table, data) {
     var keys = Object.keys(data);
     var values = Object.values(data);
     var query = `INSERT INTO ${table} (${keys.join(', ')}) VALUES (${values.map(v => `'${v}'`).join(', ')})`;
-    console.log(query);
-    run(query)
+    await run(query)
 }
 
-function bulkInsert(table, data) {
+async function bulkInsert(table, data) {
     var keys = Object.keys(data[0]);
     var values = data.map(v => `(${Object.values(v).map(v => `'${v}'`).join(', ')})`);
     var query = `INSERT INTO ${table} (${keys.join(', ')}) VALUES ${values.join(', ')}`;
-    run(query);
+    await run(query);
 }
 
+async function getAllDataFromTable(table) {
+    var query = DB.prepare(`SELECT * FROM ${table}`);
+    return query.all();
+}
+
+async function findByQuery(query) {
+    const sql = DB.prepare(query);
+    const result = await sql.all();
+    console.log(result);
+    return [];
+}
 
 export {
     DB,
     run,
     simpleInsert,
-    bulkInsert
+    bulkInsert,
+    getAllDataFromTable,
+    findByQuery
 }
