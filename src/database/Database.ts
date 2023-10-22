@@ -38,6 +38,12 @@ async function findByQuery(query) {
     return [];
 }
 
+async function getAllDataFromTable(table) {
+    var query = DB.prepare(`SELECT * FROM ${table}`);
+    return query.all();
+}
+
+
 export {
     DB,
     run,

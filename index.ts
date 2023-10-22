@@ -1,21 +1,10 @@
-import {bulkInsert, simpleInsert} from "./src/database/Database.ts";
-
-var authors = [];
-
-var timeInit = Date.now();
-
-for (let i = 0; i < 100000; i++) {
-    simpleInsert('Author', {
-        name: `Author ${i + 100000}`
-    })
-    /*authors.push({
-        name: `Author ${i}`
-    })*/
-}
+import {server} from "./src/http/server.ts";
 
 
-//bulkInsert('Author', authors)
-
-var timeEnd = Date.now();
-
-console.log(`Time elapsed: ${timeEnd - timeInit}ms`);
+server.listen(3000, (err, address) => {
+    if (err) {
+        console.error(err)
+        process.exit(1)
+    }
+    console.log(`Server listening at ${address}`)
+});

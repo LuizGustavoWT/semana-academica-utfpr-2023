@@ -7,5 +7,9 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "fastify": "^4.24.0",
+    "redis": "^4.6.10"
+  }
 }
